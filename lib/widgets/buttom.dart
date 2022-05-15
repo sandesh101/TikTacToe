@@ -17,7 +17,10 @@ class Button extends StatelessWidget {
           50,
         ),
       ),
-      child: Text(buttonText),
+      child: Text(
+        buttonText,
+        style: const TextStyle(fontSize: 16),
+      ),
     );
   }
 }
