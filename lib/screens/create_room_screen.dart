@@ -13,7 +13,6 @@ class CreateRoom extends StatefulWidget {
 }
 
 class _CreateRoomState extends State<CreateRoom> {
-  // final size = MediaQuery.of(context).size;
   final TextEditingController _nameController = TextEditingController();
 
   @override
@@ -24,6 +23,7 @@ class _CreateRoomState extends State<CreateRoom> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Responsive(
         child: Container(
@@ -39,13 +39,13 @@ class _CreateRoomState extends State<CreateRoom> {
                 text: "Create Room",
                 fontSize: 70,
               ),
-              const SizedBox(
-                height: 40,
+              SizedBox(
+                height: size.height * 0.08,
               ),
               CustomTextField(
                   controller: _nameController, hintText: "Enter your nickname"),
-              const SizedBox(
-                height: 40,
+              SizedBox(
+                height: size.height * 0.04,
               ),
               Button(onTap: () {}, buttonText: "Create"),
             ],
