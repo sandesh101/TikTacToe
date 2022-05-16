@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tictactoe_multiplayer/screens/create_room_screen.dart';
+import 'package:tictactoe_multiplayer/screens/join_room_screen.dart';
 import 'package:tictactoe_multiplayer/screens/main_menu.dart';
 import 'package:tictactoe_multiplayer/utils/colors.dart';
 
@@ -16,7 +18,12 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: bgColor),
       debugShowCheckedModeBanner: false,
-      home: const MainMenu(),
+      routes: {
+        MainMenu.routeName: (context) => const MainMenu(),
+        JoinRoom.routeName: (context) => const JoinRoom(),
+        CreateRoom.routeName: (context) => const CreateRoom(),
+      },
+      initialRoute: MainMenu.routeName,
     );
   }
 }
