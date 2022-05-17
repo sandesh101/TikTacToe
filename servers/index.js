@@ -14,6 +14,10 @@ app.use(express.json());
 
 const DB = "mongodb+srv://sandesh:tictoe1@cluster0.7p34g.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
+io.on('connection', (socket)=>{
+    console.log('Connected socket');
+});
+
 mongoose.connect(DB).then(() => {
     console.log('Connection Successfull');
 }).catch((e) => {
