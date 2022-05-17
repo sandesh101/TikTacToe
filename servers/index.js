@@ -16,10 +16,13 @@ const DB = "mongodb+srv://sandesh:tictoe1@cluster0.7p34g.mongodb.net/myFirstData
 
 io.on('connection', (socket)=>{
     console.log('Connected socket');
+    socket.on('createRoom', ({nickname})=>{
+        console.log(nickname);
+    });
 });
 
 mongoose.connect(DB).then(() => {
-    console.log('Connection Successfull');
+    console.log('Connection Successfulls');
 }).catch((e) => {
     console.log(e);
 })
