@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
+const Room = require('./models/room');
 
 var server = http.createServer(app);
 
@@ -16,8 +17,26 @@ const DB = "mongodb+srv://sandesh:tictoe1@cluster0.7p34g.mongodb.net/myFirstData
 
 io.on('connection', (socket)=>{
     console.log('Connected socket');
-    socket.on('createRoom', ({nickname})=>{
+    socket.on('createRoom', async ({nickname})=>{
         console.log(nickname);
+        
+        try{
+            let room = new Room(); 
+        let player = {
+            socketID : socket.id,
+            nickname,
+            playerType: 'X',
+        };
+        room.players.push(player);
+        room.turn = player;
+        room = await room.save();
+        const roomId = room._id.toString();
+        socket.join(roomId);
+
+        io.to(roomId).emit('createRoom Success', room)
+        }catch(e){
+            console.log(e);
+        };
     });
 });
 
